@@ -39,7 +39,8 @@ export function ChatWidget({ open, setOpen }: { open: boolean; setOpen: (v: bool
     useEffect(() => {
         if (!open) return;
 
-        const newSocket = io("http://localhost:5173", {
+        const socketUrl = import.meta.env.VITE_SOCKET_SERVER_URL || "http://localhost:5173";
+        const newSocket = io(socketUrl, {
             transports: ["websocket", "polling"],
         });
 

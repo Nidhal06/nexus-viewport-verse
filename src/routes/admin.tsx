@@ -48,7 +48,8 @@ function AdminChat() {
     useEffect(() => {
         if (!authenticated) return;
 
-        const newSocket = io("http://localhost:5173", {
+        const socketUrl = import.meta.env.VITE_SOCKET_SERVER_URL || "http://localhost:5173";
+        const newSocket = io(socketUrl, {
             transports: ["websocket", "polling"],
         });
 
@@ -116,7 +117,6 @@ function AdminChat() {
                         <Button onClick={handleLogin} className="w-full">
                             Login
                         </Button>
-
                     </div>
                 </Card>
             </div>

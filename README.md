@@ -217,6 +217,40 @@ The admin dashboard at `/admin` is password-protected. Default credentials are c
 ## 🌐 Environment Variables
 
 - `VITE_WEB3FORMS_ACCESS_KEY` - Required for contact form functionality (get free key at [web3forms.com](https://web3forms.com))
+- `VITE_SOCKET_SERVER_URL` - Socket.io server URL for real-time chat (required for chat functionality)
+
+## 💬 Chat Server Deployment
+
+The real-time chat functionality requires a separate Socket.io server deployment since Netlify only hosts static files.
+
+### Quick Setup
+
+1. **Deploy the Socket.io server** (choose one platform):
+   - **Railway** (recommended): See `socket-server/README.md` for detailed instructions
+   - **Render**: See `socket-server/README.md` for detailed instructions
+   - **Heroku**: See `socket-server/README.md` for detailed instructions
+
+2. **Update environment variable**:
+   - Copy the deployed Socket.io server URL (e.g., `https://your-app.railway.app`)
+   - Add to your `.env` file: `VITE_SOCKET_SERVER_URL=https://your-app.railway.app`
+   - Add to Netlify environment variables in your project settings
+
+3. **Redeploy frontend**:
+   - Push changes to trigger Netlify rebuild
+   - Chat functionality will now connect to your deployed Socket.io server
+
+### Local Development
+
+For local development, the Socket.io server is integrated into the dev server. Simply run:
+```bash
+npm run dev
+```
+
+The chat will automatically connect to `http://localhost:5173`.
+
+### Socket.io Server Location
+
+The standalone Socket.io server is located in the `socket-server/` directory with its own `package.json` and deployment instructions.
 
 ## 📝 Development Notes
 

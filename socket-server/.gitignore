@@ -1,0 +1,4 @@
+node_modules/
+chat-data.json
+.env
+.DS_Store
